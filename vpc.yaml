@@ -75,3 +75,24 @@ Resources:
     Properties:
       RouteTableId: !Ref RouteTable
       SubnetId: !Ref SubnetC
+  Ec2SecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      VpcId: !Ref VPC
+      GroupDescription: Security group
+  Ec2SecurityGroupRule:
+    Type: "AWS::EC2::SecurityGroupIngress"
+    Properties:
+      Description: Allow all traffic between instances
+      GroupId: !Ref SecurityGroup
+      IpProtocol: tcp
+      FromPort: 0
+      ToPort: 65535
+      SourceSecurityGroupId: !Ref Ec2SecurityGroup   
+  Ec2Instance:    
+    Type: AWS::EC2::Instance
+    Properties: 
+      ImageId: ami-0713f98de93617bb4
+      InstanceType: t1.micro
+      SecurityGroupIds: 
+        - !Ref Ec2SecurityGroup
