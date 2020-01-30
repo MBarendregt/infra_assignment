@@ -84,7 +84,7 @@ Resources:
     Type: "AWS::EC2::SecurityGroupIngress"
     Properties:
       Description: Allow all traffic between instances
-      GroupId: !Ref SecuritEc2SecurityGroupyGroup
+      GroupId: !Ref Ec2SecurityGroup
       IpProtocol: tcp
       FromPort: 0
       ToPort: 65535
